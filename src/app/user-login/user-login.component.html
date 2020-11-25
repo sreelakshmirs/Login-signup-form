@@ -1,0 +1,33 @@
+<form [formGroup]="myForm">
+   <!--value :{{myForm.value | json}}-->
+   <div class="bodyContainer">
+      <div class="formContainer">
+         <h2>Login </h2>
+         <!--Username field-->
+         <mat-form-field>
+            <mat-label> Username: </mat-label><input matInput placeholder="Enter your username"
+               formControlName="userName">
+            <mat-error *ngIf="userName.errors?.required">Name field can't be empty</mat-error>
+            <mat-error *ngIf="userName.errors?.maxlength">Name field does not exceed above 25 characters</mat-error>
+            <mat-error *ngIf="userName.errors?.pattern">Only characters are allowed</mat-error>
+         </mat-form-field>
+         <br />
+         <!--Password field-->
+         <mat-form-field>
+            <mat-label>Password : </mat-label> <input matInput placeholder="Password" type="password"
+               formControlName="password">
+            <mat-error *ngIf="password.errors?.required">Password field can't be empty</mat-error>
+            <mat-error *ngIf="password.errors?.minlength">Password must contain minimum 8 characters</mat-error>
+            <mat-error *ngIf="password.errors?.maxlength">Password must contain maximum 12 characters</mat-error>
+         </mat-form-field>
+         <br />
+         <br />
+         <br />
+         <!-- login button-->
+         <button mat-raised-button [disabled]="myForm.invalid" color="primary" (click)="displayDetails()">Login
+         </button>
+         <br />
+         <br />
+      </div>
+   </div>
+</form>

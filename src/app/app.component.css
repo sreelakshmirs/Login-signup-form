@@ -1,0 +1,30 @@
+/*CSS for home page*/
+header{
+    background-color: beige;
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,0.3);
+    font-size: 24px; 
+}
+.headerContainer{
+	text-align: center;
+	font-weight: 500;
+    padding: 10px 10px 8px 10px; 
+    font-size: 32px;
+}
+.container{
+    width:25%;
+}
+body{
+    background-color: lightgray;
+}
+.bodyContainer{
+	width:20%;
+    display: flex;  
+}
+a{
+    padding: 3px;
+    margin: 8px;
+    font-weight: 500;
+    font-size: 18px;
+    background-color: lavender;
+    border: 2px solid grey;
+}

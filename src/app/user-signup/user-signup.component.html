@@ -1,0 +1,97 @@
+<form [formGroup]="myForm">
+    <!--value :{{myForm.value | json}}-->
+    <div class="bodyContainer">
+        <div class="formContainer">
+            <h2>Registration </h2>
+            <!--Name field -->
+            <mat-form-field>
+                <mat-label>Name : </mat-label><input matInput placeholder="Enter your name" formControlName="name">
+                <mat-error *ngIf="name.errors?.required">Name field can't be empty</mat-error>
+                <mat-error *ngIf="name.errors?.maxlength">Name field does not exceed above 25 characters</mat-error>
+                <mat-error *ngIf="name.errors?.pattern">Only characters are allowed</mat-error>
+            </mat-form-field>
+            <br />
+            <!-- E-mail field-->
+            <mat-form-field>
+                <mat-label>E-mail : </mat-label><input matInput placeholder="sample@sample.com" [formControl]="email">
+                <mat-error *ngIf="myForm.controls['email'].errors?.required">Email field can't be empty</mat-error>
+                <mat-error *ngIf="myForm.controls['email'].errors?.pattern">This field can't be empty</mat-error>
+            </mat-form-field>
+            <br />
+            <!--Address field -->
+            <mat-form-field>
+                <mat-label>Address : </mat-label><input matInput placeholder="Address" formControlName="address">
+                <mat-error *ngIf="address.touched">Address field can't be empty</mat-error>
+            </mat-form-field>
+            <br />
+            <!--Phone field -->
+            <mat-form-field>
+                <mat-label>Phone : </mat-label> <input matInput placeholder="Phone" formControlName="phone">
+                <mat-error *ngIf="phone.errors?.required ">Phone field can't be empty</mat-error>
+                <mat-error *ngIf="phone.errors?.maxlength"> Please enter a valid phonenumber</mat-error>
+                <mat-error *ngIf="phone.errors?.minlength">Enter a valid phone number</mat-error>
+                <mat-error *ngIf="phone.errors?.pattern">Enter numbers only</mat-error>
+            </mat-form-field>
+            <br />
+            <!--DOB field  -->
+            <label>DOB</label>
+            <br />
+            <mat-form-field class="dob">
+                <mat-label>Day </mat-label> <input matInput placeholder="DD" type="number" formControlName="day">
+                <mat-error *ngIf="day.errors?.required">Day field can't be empty</mat-error>
+            </mat-form-field>
+            <!--Select month-->
+            <mat-form-field class="dob">
+                <mat-label>Month </mat-label>
+                <mat-select formControlName="month">
+                    <mat-option *ngFor="let month of months" [value]="month.value">
+                        <mat-error *ngIf="month.errors?.required">Month field can't be empty</mat-error>
+                        {{month.selectedValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <!--Year field-->
+            <mat-form-field class="dob">
+                <input matInput placeholder="YYYY" type="number" formControlName="year">
+                <mat-error *ngIf="year.errors?.required">Year field can't be empty</mat-error>
+            </mat-form-field>
+            <br />
+            <br />
+            <!-- Gender field  -->
+            <label>Gender : </label>
+            <mat-radio-group formControlName="gender">
+                <mat-radio-button value="m">Male</mat-radio-button>
+                <mat-radio-button value="f">Female</mat-radio-button>
+                <mat-error *ngIf="gender.errors?.required">Gender field can't be empty</mat-error>
+            </mat-radio-group>
+            <br />
+            <br />
+            <mat-checkbox [formControl]="eligible" color="primary">Eligible</mat-checkbox>
+            <br />
+            <!--Password field -->
+            <mat-form-field>
+                <mat-label>Password : </mat-label> <input matInput placeholder="Password" type="password"
+                    formControlName="password">
+                <mat-error *ngIf="password.errors?.required">Password field can't be empty</mat-error>
+                <mat-error *ngIf="password.errors?.minlength">Password must contain minimum 8 characters</mat-error>
+                <mat-error *ngIf="password.errors?.maxlength">Password must contain maximum 12 characters</mat-error>
+                <mat-error *ngIf="password.errors?.pattern">Try alphanumeric password</mat-error>
+            </mat-form-field>
+            <br />
+            <!--conform password field   -->
+            <mat-form-field>
+                <mat-label>Conform Password : </mat-label> <input matInput placeholder="Conform Password"
+                    type="password" formControlName="conformPassword">
+                <mat-error *ngIf="conformPassword.errors?.required">Conform Password field can't be empty</mat-error>
+                <mat-error *ngIf="myForm.controls.conformPassword.errors?.passwordValidity && conformPassword">Password
+                    mismatch</mat-error>
+            </mat-form-field>
+            <br />
+            <br />
+            <button mat-raised-button [disabled]="myForm.invalid" color="primary" (click)="displayDetails()">Submit
+            </button>
+            <br />
+            <br />
+        </div>
+    </div>
+</form>
